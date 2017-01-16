@@ -1,6 +1,6 @@
 # colinjstevenson
 
-> Personal Website
+> Personal Website featuring photography from Flickr. 
 
 ## Build Setup
 
@@ -10,6 +10,8 @@ npm install
 
 # serve with hot reload at localhost:8080
 npm run dev
+
+Will need to add src/env.js with appropriate Flickr API keys for this to work.
 
 # build for production with minification
 npm run build
