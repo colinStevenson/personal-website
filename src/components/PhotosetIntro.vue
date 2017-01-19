@@ -1,20 +1,14 @@
 <template>
-	<section class="panel panel-photoset">
+	<div class="slide">
 		<!--<photo :id="details.primary" :size=5 class='panel-media img-responsize'></photo>-->
-		<div class="panel-media" :style="{ backgroundImage: 'url(' + large + ')' }">
+		<div class="slide-media" :style="{ backgroundImage: 'url(' + large + ')' }">
 		</div>
-		<div class="panel-body">
-			<header class="panel-heading">
-				<h1 class="panel-title">
-					<router-link :to="{ name: 'photoset', params: { id: details.id }}">
-						{{details.title._content}}
-					</router-link>
-				</h1>
-			</header>
-			
-			<!--<p>{{details.description._content}}</p>-->
+		<div class="slide-body">
+			<router-link :to="{ name: 'photoset', params: { id: details.id }}">
+				{{details.title._content}}
+			</router-link>
 		</div>
-	</section>
+	</div>
 </template>
 <script>
     import PhotoMixin from './Photo';

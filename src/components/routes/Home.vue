@@ -1,10 +1,10 @@
 <template>
 	<div class="container">
-		<div class="row">
-			<div class="col-md-4" v-for="set in photosets">
+		<ul class="slide-nav">
+			<li v-for="set in photosets" v-on:click="goToPhotoset(set.id)">
 				<photoset-intro :details="set">
 				</photoset-intro>
-			</div>
+			</li>
 		</div>
 	</div>
 </template>
@@ -36,7 +36,15 @@
                         component.hasPhotosets = true;
                     }
                 });
-            }
+            },
+            goToPhotoset(photosetId) {
+                this.$router.push({
+                    name: 'photoset',
+                    params: {
+                        id: photosetId
+                    }
+                });
+            },
         },
     };
 </script>

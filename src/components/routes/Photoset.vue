@@ -86,6 +86,7 @@
             padding: 1em 0;
             .page-title {
                 font-weight: normal;
+                text-transform: uppercase;
             }
             p {
                 margin: 0;
