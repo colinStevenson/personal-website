@@ -1,7 +1,12 @@
 <template>
 	<div class="container">
-		<h1>Photo</h1>
-		<photo-component :id='$route.params.id' :size=7></photo-component>
+		<div class="slide slide-lg">
+			<photo-component 
+				:id='$route.params.id' 
+				:size=7 :include-meta=true 
+				class="img-responsive">
+			</photo-component>
+		</div>
 	</div>
 </template>
 <script>

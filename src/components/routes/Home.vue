@@ -1,9 +1,11 @@
 <template>
-	<div>
-		<photoset-intro 
-			v-for="set in photosets" 
-			:details="set">
-		</photoset-intro>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4" v-for="set in photosets">
+				<photoset-intro :details="set">
+				</photoset-intro>
+			</div>
+		</div>
 	</div>
 </template>
 <script>
@@ -15,22 +17,26 @@
             PhotosetIntro
         },
         created() {
-            let component = this;
-
-            Flickr.photosets.getList({
-                'user_id': ENV.FLICKR_USER_ID,
-            }, function(x, response) {
-                if (response && response.photosets && response.photosets.photoset) {
-                    component.photosets = response.photosets.photoset;
-                    component.hasPhotosets = true;
-                }
-            });
+            this._requestPhotosets();
         },
         data() {
             return {
                 hasPhotosets: false,
                 photosets: null,
             }
-        }
+        },
+        methods: {
+            _requestPhotosets() {
+                let component = this;
+                Flickr.photosets.getList({
+                    'user_id': ENV.FLICKR_USER_ID,
+                }, function(x, response) {
+                    if (response && response.photosets && response.photosets.photoset) {
+                        component.photosets = response.photosets.photoset;
+                        component.hasPhotosets = true;
+                    }
+                });
+            }
+        },
     };
 </script>

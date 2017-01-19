@@ -1,0 +1,30 @@
+//Photoset Panel
+.panel-photoset {
+    background: #fff;
+    margin-bottom: 2em;
+    transition: box-shadow 0.2s ease-in;
+    .panel-media {
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: block;
+        min-height: 40vh;
+    }
+    .panel-body {
+        padding: 2em 1em;
+        text-align: center;
+    }
+    .panel-heading {
+        text-align: left;
+    }
+    .panel-title {
+        font-size: 1.4em;
+        margin: 0;
+        text-transform: uppercase;
+        >a {
+            color: $text-color;
+        }
+    }
+    &:hover {
+        box-shadow: 0 0 25px 5px rgba(0, 0, 0, 0.1);
+    }
+}
