@@ -28,7 +28,8 @@
     .meta {
         margin-bottom: 1em;
         >h1 {
-            font-weight: normal;
+            font-weight: 300;
+            margin: 0 0 $spacer 0;
             text-transform: uppercase;
         }
     }

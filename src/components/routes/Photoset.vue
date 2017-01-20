@@ -71,26 +71,3 @@
         }
     }
 </script>
-<style lang="scss">
-    .page-header {
-        margin: -2em 0 2em;
-        padding: 35vh 0 0;
-        position: relative;
-        background: url(https://farm5.staticflickr.com/4031/4402846583_6168416ac2_b.jpg) left bottom no-repeat;
-        background-size: cover;
-        position: relative;
-        .page-header-body {
-            background: #fff;
-            color: #333;
-            opacity: 0.9;
-            padding: 1em 0;
-            .page-title {
-                font-weight: normal;
-                text-transform: uppercase;
-            }
-            p {
-                margin: 0;
-            }
-        }
-    }
-</style>

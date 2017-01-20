@@ -1,11 +1,8 @@
 $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 // Body
 $body-bg: #eee;
-// Navbar
-$navbar-default-border: transparent;
-$navbar-default-bg: #fff;
 // Brands
-$brand-primary: #3097D1;
+$brand-primary: #1B2C34;
 $brand-info: #8eb4cb;
 $brand-success: #2ab27b;
 $brand-warning: #cbb956;
@@ -16,3 +13,10 @@ sans-serif;
 $font-size-base: 14px;
 $line-height-base: 1.6;
 $text-color: #333;
+// Links
+$link-hover-decoration: none !default;
+$link-color: $brand-primary;
+// Spacing
+$spacer: 10px;
+// Navbar
+$navbar-height: 66px;

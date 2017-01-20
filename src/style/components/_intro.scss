@@ -1,0 +1,5 @@
+.intro {
+    background: url(https://farm4.staticflickr.com/3282/3053276533_e4c51b5ba0_b.jpg) left bottom no-repeat;
+    background-size: cover;
+    height: calc(100vh - #{$navbar-height});
+}
