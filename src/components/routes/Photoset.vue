@@ -3,7 +3,7 @@
 		<!---->
 		<!--<photo :id="photosetData.primary"></photo>
 		-->
-		<header class="page-header">
+		<header class="page-header" ref="container">
 			<div class="page-header-body">
 				<div class="container">
 					<h1 class="page-title">{{photosetData.title._content}}</h1>
@@ -24,6 +24,7 @@
 </template>
 <script>
     import Photo from '../Photo.vue';
+    import PhotoMixin from '../mixins/Photo';
 
     export default {
         components: {
@@ -64,10 +65,21 @@
                     if (response && response.photoset && response.photoset.photo) {
                         component.photos = response.photoset.photo;
                         component.hasPhotos = true;
-                        console.log
                     }
                 });
             },
-        }
+        },
+        mixins: [PhotoMixin],
+        watch: {
+            hasPhotosetData() {
+                if (this.photosetData.primary) {
+                    this._requestSizes(this.photosetData.primary);
+                }
+            },
+            hasSizesData(newVal) {
+                console.log(this.large);
+                this.$refs.container.style.backgroundImage = "url(" + this.large + ")";
+            }
+        },
     }
 </script>

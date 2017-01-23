@@ -18,8 +18,8 @@
 	        },
 	    },
 	    created() {
-	        this._requestSizes();
-	        this._requestInfo();
+	        this._requestSizes(this.photoId);
+	        this._requestInfo(this.photoId);
 	    },
 	    data() {
 	        return {
@@ -34,10 +34,10 @@
 	        }
 	    },
 	    methods: {
-	        _requestSizes() {
+	        _requestSizes(photoId) {
 	            let component = this;
 	            Flickr.photos.getSizes({
-	                'photo_id': this.photoId
+	                'photo_id': photoId
 	            }, function(x, response) {
 	                if (response && response.sizes && response.sizes.size) {
 	                    component.sizes = response.sizes.size;
@@ -48,10 +48,10 @@
 	                }
 	            });
 	        },
-	        _requestInfo() {
+	        _requestInfo(photoId) {
 	            let component = this;
 	            Flickr.photos.getInfo({
-	                'photo_id': this.photoId
+	                'photo_id': photoId
 	            }, function(x, response) {
 	                if (response && response.photo) {
 	                    component.meta = response.photo;
