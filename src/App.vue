@@ -1,12 +1,7 @@
 <template>
 	<div id="app">
-		<div 
-			v-if="$route.name == 'home'" 
-			class="intro" 
-			id="site-intro" 
-			role="presentation"
-			:style="{ filter: 'grayscale(' + introFade + '%)' }">
-		</div>
+		<site-intro v-if="$route.name == 'home'">
+		</site-intro>
 		<navbar></navbar>
 		<main id="main">
 			<router-view></router-view>
@@ -16,35 +11,13 @@
 
 <script>
     import Navbar from './components/Navbar';
+    import SiteIntro from './components/SiteIntro';
 
     export default {
         name: 'app',
         components: {
-            Navbar
-        },
-        methods: {
-            handleScroll(e) {
-                this.setIntroScrollPosition();
-            },
-            setIntroScrollPosition() {
-                let scrollPos = window.scrollY;
-                let $intro = document.getElementById("site-intro");
-                if ($intro) {
-                    let introHeight = $intro.clientHeight;
-                    this.introFade = (scrollPos / introHeight) * 200;
-                }
-            },
-        },
-        created() {
-            let component = this;
-            window.addEventListener('scroll', function() {
-                component.handleScroll.apply(this, arguments);
-            });
-        },
-        data() {
-            return {
-                introFade: 0,
-            };
+            Navbar,
+            SiteIntro,
         },
     };
 </script>

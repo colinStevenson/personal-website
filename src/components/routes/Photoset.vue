@@ -77,7 +77,6 @@
                 }
             },
             hasSizesData(newVal) {
-                console.log(this.large);
                 this.$refs.container.style.backgroundImage = "url(" + this.large + ")";
             }
         },
