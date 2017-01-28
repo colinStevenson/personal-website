@@ -3,10 +3,8 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 $body-bg: #eee;
 // Brands
 $brand-primary: #1B2C34;
-$brand-info: #8eb4cb;
-$brand-success: #2ab27b;
-$brand-warning: #cbb956;
-$brand-danger: #bf5329;
+$brand-secondary: #42ab9e;
+
 // Typography
 $font-family-sans-serif: "Open Sans",
 sans-serif;
@@ -16,6 +14,7 @@ $text-color: #333;
 // Links
 $link-hover-decoration: none !default;
 $link-color: $brand-primary;
+$link-hover-color: $brand-secondary;
 // Spacing
 $spacer: 10px;
 // Navbar

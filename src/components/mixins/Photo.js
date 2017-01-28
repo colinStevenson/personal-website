@@ -45,7 +45,6 @@
 						component.source = component.sizes[component.size].source;
 						component.medium = component.sizes[5].source;
 						component.large = component.sizes[7].source;
-						console.log(component.sizes)
 					}
 				});
 			},

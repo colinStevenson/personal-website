@@ -6,7 +6,7 @@
 			</h1>
 			<ul class="navbar-right nav navbar-nav">
 				<li><router-link :to="{ name: 'home'}">Photography</router-link></li>
-				<li><a href="#">About</a></li>
+				<li><router-link :to="{ name: 'about'}">About</router-link></li>
 			</ul>
 		</div>
 	</header>
