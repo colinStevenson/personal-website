@@ -35,7 +35,7 @@
 		},
 		methods: {
 			handleScroll(e) {
-				this.setIntroScrollPosition();
+				//this.setIntroScrollPosition();
 			},
 			getFeaturedImageId() {
 				return FEATURE_IMAGES[new Date().getDay()];

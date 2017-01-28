@@ -48,3 +48,9 @@
 		},
 	};
 </script>
+<style>
+	/*make sure we can scroll past the intro even if photoset list hasn't loaded yet*/
+	body{
+		min-height: 200vh; 
+	}
+</style>

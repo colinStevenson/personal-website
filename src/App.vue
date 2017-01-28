@@ -22,6 +22,29 @@
 			Navbar,
 			SiteIntro,
 		},
+		methods: {
+			scrollToMain(){
+				let $intro = document.getElementById("site-intro");
+				if ($intro) {
+					let introHeight = $intro.clientHeight;
+					window.scrollTo(0, introHeight);
+				}
+			},
+		},
+		watch: {
+			'$route': function(){
+				//handling scroll behavior here since router isn't firing handler
+				if(this.$route.name == "home" && this.$route.params.intro !== true) {
+					console.log("yes");
+					setTimeout(this.scrollToMain, 100);
+				} else {
+					console.log("no");
+					setTimeout(function(){
+						window.scrollTo(0,0);
+					}, 100);
+				}
+			}
+		}
 	};
 </script>
 

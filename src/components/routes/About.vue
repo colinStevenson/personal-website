@@ -1,9 +1,9 @@
 <template>
 	<div class="container">
 		<section class="panel panel-about">
-			<div class="panel-media">
+			<!--<div class="panel-media">
 				<img src="../../content/images/colin.png" alt="Picture of Colin Stevenson" class="img-responsive">
-			</div>
+			</div>-->
 			<header class="panel-heading">
 				<h1 class="panel-title">About Colin</h1>
 			</header>
