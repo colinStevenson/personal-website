@@ -7,15 +7,15 @@
 	</div>
 </template>
 <script>
-    import Flickr from '../api/flickr/flickr';
-    import PhotoMixin from './mixins/Photo';
+	import Flickr from '../api/flickr/flickr';
+	import PhotoMixin from './mixins/Photo';
 
-    export default {
-        mixins: [PhotoMixin],
-        props: {
-            id: {
-                type: String,
-            }
-        }
-    };
+	export default {
+		mixins: [PhotoMixin],
+		props: {
+			id: {
+				type: String,
+			}
+		}
+	};
 </script>

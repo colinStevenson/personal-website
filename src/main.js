@@ -6,14 +6,14 @@ import App from './App';
 import routes from './routes';
 
 const router = new VueRouter({
-    routes: routes,
+	routes: routes,
 });
 
 Vue.use(VueRouter);
 
 new Vue({
-    el: '#app',
-    template: '<App/>',
-    components: { App },
-    router,
+	el: '#app',
+	template: '<App/>',
+	components: { App },
+	router,
 })

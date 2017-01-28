@@ -12,73 +12,75 @@
 			</div>
 		</header>
 		<div class="container">
-			<ul class="slide-set">
-				<li v-for="photo in photos" class="slide">
-					<router-link :to="{ name: 'photo', params: { id: photo.id }}">
-						<photo :id="photo.id" :size=4></photo>
-					</router-link>
-				</li>
+			<div class="row">
+				<div v-for="photo in photos" class="col-md-3 col-xs-4">
+					<div class="slide slide-square slide-link">
+						<router-link :to="{ name: 'photo', params: { id: photo.id }}">
+							<photo :id="photo.id" :size=1></photo>
+						</router-link>
+					</div>
+				</div>
 			</ul>
 		</div>
 	</div>
 </template>
 <script>
-    import Photo from '../Photo.vue';
-    import PhotoMixin from '../mixins/Photo';
+	import Photo from '../Photo.vue';
+	import PhotoMixin from '../mixins/Photo';
 
-    export default {
-        components: {
-            Photo,
-        },
-        created() {
-            this._requestPhotosetInfo();
-            this._requestPhotosetPhotos();
+	export default {
+		components: {
+			Photo,
+		},
+		created() {
+			this._requestPhotosetInfo();
+			this._requestPhotosetPhotos();
 
-        },
-        data() {
-            return {
-                hasPhotosetData: false,
-                hasPhotos: false,
-                photosetData: null,
-                photos: null,
-            }
-        },
-        methods: {
-            _requestPhotosetInfo() {
-                let component = this;
-                //Request photoset info
-                Flickr.photosets.getInfo({
-                    'photoset_id': this.$route.params.id,
-                }, function(x, response) {
-                    if (response && response.photoset && response.photoset.id) {
-                        component.photosetData = response.photoset;
-                        component.hasPhotosetData = true;
-                    }
-                });
-            },
-            _requestPhotosetPhotos() {
-                let component = this;
-                //Request photoset photoset
-                Flickr.photosets.getPhotos({
-                    'photoset_id': this.$route.params.id,
-                }, function(x, response) {
-                    if (response && response.photoset && response.photoset.photo) {
-                        component.photos = response.photoset.photo;
-                        component.hasPhotos = true;
-                    }
-                });
-            },
-        },
-        mixins: [PhotoMixin],
-        watch: {
-            hasPhotosetData() {
-                if (this.photosetData.primary) {
-                    this._requestSizes(this.photosetData.primary);
-                }
-            },
-            hasSizesData(newVal) {
-                this.$refs.container.style.backgroundImage = "url(" + this.large + ")";
-            }
-        },
-    }
+		},
+		data() {
+			return {
+				hasPhotosetData: false,
+				hasPhotos: false,
+				photosetData: null,
+				photos: null,
+			}
+		},
+		methods: {
+			_requestPhotosetInfo() {
+				let component = this;
+				//Request photoset info
+				Flickr.photosets.getInfo({
+					'photoset_id': this.$route.params.id,
+				}, function(x, response) {
+					if (response && response.photoset && response.photoset.id) {
+						component.photosetData = response.photoset;
+						component.hasPhotosetData = true;
+					}
+				});
+			},
+			_requestPhotosetPhotos() {
+				let component = this;
+				//Request photoset photoset
+				Flickr.photosets.getPhotos({
+					'photoset_id': this.$route.params.id,
+				}, function(x, response) {
+					if (response && response.photoset && response.photoset.photo) {
+						component.photos = response.photoset.photo;
+						component.hasPhotos = true;
+					}
+				});
+			},
+		},
+		mixins: [PhotoMixin],
+		watch: {
+			hasPhotosetData() {
+				if (this.photosetData.primary) {
+					this._requestSizes(this.photosetData.primary);
+				}
+			},
+			hasSizesData(newVal) {
+				this.$refs.container.style.backgroundImage = "url(" + this.large + ")";
+			}
+		},
+	}
 </script>

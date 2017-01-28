@@ -1,6 +1,5 @@
 <template>
-	<div class="slide">
-		<!--<photo :id="details.primary" :size=5 class='panel-media img-responsize'></photo>-->
+	<div class="slide slide-link">
 		<div class="slide-media" :style="{ backgroundImage: 'url(' + large + ')' }">
 		</div>
 		<div class="slide-body">
@@ -11,15 +10,15 @@
 	</div>
 </template>
 <script>
-    import PhotoMixin from './Photo';
+	import PhotoMixin from './Photo';
 
-    export default {
-        computed: {
-            photoId() {
-                return this.details.primary;
-            }
-        },
-        props: ['details'],
-        mixins: [PhotoMixin],
-    }
+	export default {
+		computed: {
+			photoId() {
+				return this.details.primary;
+			}
+		},
+		props: ['details'],
+		mixins: [PhotoMixin],
+	}
 </script>

@@ -10,11 +10,11 @@
 	</div>
 </template>
 <script>
-    import PhotoComponent from '../Photo.vue';
+	import PhotoComponent from '../Photo.vue';
 
-    export default {
-        components: {
-            PhotoComponent
-        }
-    }
+	export default {
+		components: {
+			PhotoComponent
+		}
+	}
 </script>

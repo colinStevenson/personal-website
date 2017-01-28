@@ -11,18 +11,18 @@
 </template>
 
 <script>
-    import SiteFooter from './components/SiteFooter';
-    import Navbar from './components/Navbar';
-    import SiteIntro from './components/SiteIntro';
+	import SiteFooter from './components/SiteFooter';
+	import Navbar from './components/Navbar';
+	import SiteIntro from './components/SiteIntro';
 
-    export default {
-        name: 'app',
-        components: {
-            SiteFooter,
-            Navbar,
-            SiteIntro,
-        },
-    };
+	export default {
+		name: 'app',
+		components: {
+			SiteFooter,
+			Navbar,
+			SiteIntro,
+		},
+	};
 </script>
 
 <style lang="scss" src="src/style/app.scss"></style>

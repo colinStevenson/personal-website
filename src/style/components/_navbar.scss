@@ -1,41 +1,41 @@
 .navbar {
-    @extend .clearfix;
+	@extend .clearfix;
 }
 
 .navbar-default {
-    background: #fff;
-    border-radius: 0;
-    border-width: 0;
-    margin: 0 0 2em;
+	background: #fff;
+	border-radius: 0;
+	border-width: 0;
+	margin: 0 0 $spacer*2;
 }
 
 //navbar nav
 .navbar-brand {
-    float: left;
-    font-size: 24px;
-    margin: $spacer*2 0;
-    >a {
-        color: $link-color;
-    }
+	float: left;
+	font-size: 24px;
+	margin: $spacer*2 0;
+	>a {
+		color: $link-color;
+	}
 }
 
 //navbar nav
 .navbar-nav {
-    >li {
-        float: left;
-        >a {
-            padding: 22px 15px;
-            text-transform: uppercase;
-            transition: background-color 0.2s ease-in;
-        }
-        &.active>a,
-        a.router-link-active {
-            background: $brand-primary;
-            color: #fff;
-        }
-    }
+	>li {
+		float: left;
+		>a {
+			padding: 22px 15px;
+			text-transform: uppercase;
+			transition: background-color 0.2s ease-in;
+		}
+		&.active>a,
+		a.router-link-active {
+			background: $brand-primary;
+			color: #fff;
+		}
+	}
 }
 
 .navbar-right {
-    float: right;
+	float: right;
 }

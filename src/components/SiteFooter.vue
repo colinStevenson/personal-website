@@ -6,11 +6,11 @@
 	</footer>
 </template>
 <script>
-    export default {
-        computed: {
-            year() {
-                return new Date().getFullYear();
-            }
-        },
-    }
+	export default {
+		computed: {
+			year() {
+				return new Date().getFullYear();
+			}
+		},
+	}
 </script>

@@ -1,72 +1,61 @@
 //Slides
 //------------
 .slide-set {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    >.slide {
-        transition: box-shadow 0.2s ease;
-        &:hover {
-            box-shadow: 0 0 25px 5px rgba(0, 0, 0, 0.1);
-        }
-    }
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: flex-start;
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }
 
 .slide {
-    background: #fff;
-    margin: 0 2em 2em 0;
-    padding: 0 0 1em 0;
+	background: #fff;
+	margin: 0 2em 2em 0;
+	padding: 0;
+	
+}
+.slide-link{
+	cursor: pointer;
+	transition: box-shadow 0.2s ease;
+
+	&:hover {
+		box-shadow: 0 0 25px 5px rgba(0, 0, 0, 0.1);
+	}
+}
+
+.slide .slide-media {
+	background-repeat: no-repeat;
+	background-size: cover;
+	display: block;
+	min-height: 30vh;
+}
+
+.slide .slide-body {
+	padding: $spacer;
+	a {
+		color: $text-color;
+		font-size: 1.4em;
+	}
+}
+
+.slide-square{
+	img{
+		margin: 0 auto;
+	}
 }
 
 .slide-lg {
-    display: inline-block;
-    padding: 2em;
-    .meta {
-        margin-bottom: 1em;
-        >h1 {
-            font-weight: 300;
-            margin: 0 0 $spacer 0;
-            text-transform: uppercase;
-        }
-    }
-}
-
-//Slide nav
-.slide-nav {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    margin: 0;
-    padding: 0;
-    >li {
-        cursor: pointer;
-        margin-right: 1em;
-        width: 32%;
-    }
-    .slide {
-        padding: 0;
-        transition: box-shadow 0.2s ease;
-        &:hover {
-            box-shadow: 0 0 25px 5px rgba(0, 0, 0, 0.1);
-        }
-    }
-    .slide-media {
-        background-repeat: no-repeat;
-        background-size: cover;
-        display: block;
-        min-height: 30vh;
-    }
-    .slide-body {
-        padding: 2em 1em;
-        a {
-            color: $text-color;
-            font-size: 1.4em;
-            text-transform: uppercase;
-        }
-    }
+	padding: $spacer*2;
+	.meta {
+		margin-bottom: 1em;
+		>h1 {
+			font-weight: 300;
+			margin: 0 0 $spacer 0;
+		}
+	}
+	img{
+		max-height: 70vh;
+	}
 }
