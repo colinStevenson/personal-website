@@ -1,6 +1,6 @@
 <template>
 	<div class="slide slide-link">
-		<div class="slide-media" :style="{ backgroundImage: 'url(' + large + ')' }">
+		<div v-if=hasSizesData class="slide-media" :style="{ backgroundImage: 'url(' + photoSource + ')' }">
 		</div>
 		<div class="slide-body">
 			<router-link :to="{ name: 'photoset', params: { id: details.id }}">
@@ -11,11 +11,15 @@
 </template>
 <script>
 	import PhotoMixin from './Photo';
+	import PhotoSizes from '../api/flickr/PhotoSizes';
 
 	export default {
 		computed: {
 			photoId() {
 				return this.details.primary;
+			},
+			photoSource(){
+				return this.sizes[PhotoSizes.LARGE].source;
 			}
 		},
 		props: ['details'],

@@ -1,0 +1,11 @@
+const PHOTO_SIZES = {
+	SQUARE: 0,
+	LARGE_SQUARE: 1,
+	THUMBNAIL: 2,
+	SMALL: 3,
+	SMALL_320: 4,
+	MEDIUM: 5,
+	MEDIUM_640: 6,
+	LARGE: 7,
+};
+export default PHOTO_SIZES;

@@ -1,8 +1,5 @@
 <template>
 	<div v-if="hasPhotosetData">
-		<!---->
-		<!--<photo :id="photosetData.primary"></photo>
-		-->
 		<header class="page-header" ref="container">
 			<div class="page-header-body">
 				<div class="container">
@@ -27,6 +24,7 @@
 <script>
 	import Photo from '../Photo.vue';
 	import PhotoMixin from '../mixins/Photo';
+	import PhotoSizes from '../../api/flickr/PhotoSizes';
 
 	export default {
 		components: {
@@ -79,7 +77,7 @@
 				}
 			},
 			hasSizesData(newVal) {
-				this.$refs.container.style.backgroundImage = "url(" + this.large + ")";
+				this.$refs.container.style.backgroundImage = "url(" + this.getImageSource(PhotoSizes.LARGE) + ")";
 			}
 		},
 	}

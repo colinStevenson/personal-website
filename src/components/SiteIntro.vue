@@ -9,6 +9,8 @@
 </template>
 <script>
 	import PhotoMixin from './mixins/Photo';
+	import PhotoSizes from '../api/flickr/PhotoSizes';
+
 	const FEATURE_IMAGES = [
 		"514080236",
 		"4402846583",
@@ -35,7 +37,7 @@
 		},
 		methods: {
 			handleScroll(e) {
-				//this.setIntroScrollPosition();
+				this.setIntroScrollPosition();
 			},
 			getFeaturedImageId() {
 				return FEATURE_IMAGES[new Date().getDay()];
@@ -53,7 +55,7 @@
 		watch: {
 			hasSizesData(newVal) {
 				if (newVal) {
-					this.$refs.intro.style.backgroundImage = "url(" + this.large + ")";
+					this.$refs.intro.style.backgroundImage = "url(" + this.getImageSource(PhotoSizes.LARGE) + ")";
 				}
 			}
 		}
