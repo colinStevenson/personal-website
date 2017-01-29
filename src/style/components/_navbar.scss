@@ -28,8 +28,8 @@
 			text-transform: uppercase;
 			transition: background-color 0.2s ease-in;
 		}
-		&.active>a,
-		.router-link-active {
+		&.active > a,
+		.router-link-active{
 			background: $brand-primary;
 			color: #fff;
 		}

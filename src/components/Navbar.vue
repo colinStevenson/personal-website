@@ -5,7 +5,7 @@
 				<router-link :to="{ name:'home', params: { intro: true }}">Colin Stevenson</router-link>
 			</h1>
 			<ul class="navbar-right nav navbar-nav">
-				<li @click="scrollToMain" id="photography-tab" :class="{active: isPhotographyRoute }">
+				<li @click="scrollToMain" id="photography-tab" class="photography-tab" :class="{active: isPhotographyRoute }">
 					<router-link :to="{ name: 'home', params: { intro: false }}">
 						<span class="hidden-xs">Photography</span>
 						<span class="visible-xs">Photos</span>
