@@ -5,7 +5,12 @@
 				<router-link :to="{ name:'home', params: { intro: true }}">Colin Stevenson</router-link>
 			</h1>
 			<ul class="navbar-right nav navbar-nav">
-				<li :class="{active: isPhotographyRoute }"><router-link :to="{ name: 'home', params: { intro: false }}">Photography</router-link></li>
+				<li :class="{active: isPhotographyRoute }">
+					<router-link :to="{ name: 'home', params: { intro: false }}">
+						<span class="hidden-xs">Photography</span>
+						<span class="visible-xs">Photos</span>
+					</router-link>
+				</li>
 				<li><router-link :to="{ name: 'about'}">About</router-link></li>
 			</ul>
 		</div>

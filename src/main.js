@@ -7,9 +7,6 @@ import routes from './routes';
 
 const router = new VueRouter({
 	routes: routes,
-	scrollBehavior (to, from, savedPosition) {
-		//Why isn't this firing?!?
-	}
 });
 
 Vue.use(VueRouter);
