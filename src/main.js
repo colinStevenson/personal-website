@@ -4,6 +4,9 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import App from './App';
 import routes from './routes';
+import SmoothScroll from 'smoothscroll-polyfill';
+
+SmoothScroll.polyfill();
 
 const router = new VueRouter({
 	routes: routes,

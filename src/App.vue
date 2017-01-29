@@ -14,6 +14,7 @@
 	import SiteFooter from './components/SiteFooter';
 	import Navbar from './components/Navbar';
 	import SiteIntro from './components/SiteIntro';
+	import IntroScrollingMixin from './components/mixins/IntroScrolling';
 
 	export default {
 		name: 'app',
@@ -22,15 +23,7 @@
 			Navbar,
 			SiteIntro,
 		},
-		methods: {
-			scrollToMain(){
-				let $intro = document.getElementById("site-intro");
-				if ($intro) {
-					let introHeight = $intro.clientHeight;
-					window.scrollTo(0, introHeight);
-				}
-			},
-		},
+		mixins: [ IntroScrollingMixin ],
 		watch: {
 			'$route': function(){
 				//handling scroll behavior here since router isn't firing handler
@@ -38,7 +31,7 @@
 					setTimeout(this.scrollToMain, 100);
 				} else {
 					setTimeout(function(){
-						window.scrollTo(0,0);
+						window.scrollTo({left: 0, top: 0, behavior: 'smooth'});
 					}, 100);
 				}
 			}
