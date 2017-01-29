@@ -54,6 +54,7 @@
 
 	> li{
 		display: inline-block;
+		margin-bottom: $spacer*2;
 		margin-right: $spacer*2;
 
 		[class^="icon-"]{
