@@ -1,5 +1,5 @@
 <template>
-	<div id="app">
+	<div id="app" :class=$route.name>
 		<site-intro v-if="$route.name == 'home'">
 		</site-intro>
 		<navbar></navbar>
@@ -40,3 +40,9 @@
 </script>
 
 <style lang="scss" src="src/style/app.scss"></style>
+<style>
+/*make sure we can scroll past the intro even if photoset list hasn't loaded yet*/
+ #app.home{
+	 min-height: 200vh;
+ }
+</style>

@@ -32,6 +32,11 @@
 		.router-link-active{
 			background: $brand-primary;
 			color: #fff;
+
+			&:hover,
+			&:focus{
+				background: $brand-primary;
+			}
 		}
 	}
 }
