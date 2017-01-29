@@ -17,7 +17,7 @@
 	</header>
 </template>
 <script>
-	const PHOTOGRAPY_ROUTES = ["home", "photoset", "photo"];
+	const PHOTOGRAPY_ROUTES = ["photoset", "photo"];
 	export default {
 		computed: {
 			isPhotographyRoute(){
