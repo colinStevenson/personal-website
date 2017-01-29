@@ -48,15 +48,6 @@
 				if ($intro) {
 					let introHeight = $intro.clientHeight;
 					this.introFade = Math.min((scrollPos / introHeight) * 100, 100);
-					this.setPhotoTabStyle();
-				}
-			},
-			setPhotoTabStyle(){
-				let $photogTab = document.getElementById("photography-tab");
-				if(this.introFade >= 100) {
-					$photogTab.className = "active";
-				} else {
-					$photogTab.className = "";
 				}
 			},
 		},
