@@ -29,6 +29,7 @@
 			window.addEventListener('scroll', function() {
 				component.handleScroll.apply(this, arguments);
 			});
+			this.setIntroScrollPosition();
 		},
 		data() {
 			return {
@@ -44,10 +45,12 @@
 			},
 			setIntroScrollPosition() {
 				let scrollPos = window.scrollY;
-				let $intro = document.getElementById("site-intro");
+				let $intro = this.$refs.intro;
 				if ($intro) {
-					let introHeight = $intro.clientHeight;
+					let introHeight = $intro.clientHeight ;
 					this.introFade = Math.min((scrollPos / introHeight) * 100, 100);
+				} else {
+					this.introFade = 0;
 				}
 			},
 		},
@@ -59,6 +62,14 @@
 						this.getImageSource(PhotoSizes.LARGE),
 						this.$refs.intro
 					);
+				}
+			},
+			introFade(){
+				let introOpen = this.introFade < 100;
+				if(introOpen) {
+					document.body.classList.add("intro-open");
+				} else {
+					document.body.classList.remove("intro-open");
 				}
 			}
 		}

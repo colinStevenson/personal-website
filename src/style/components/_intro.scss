@@ -2,4 +2,8 @@
 	background: left bottom no-repeat;
 	background-size: cover;
 	height: calc(100vh - #{$navbar-height});
+	visibility: hidden;
+}
+body.intro-open .intro{
+	visibility: visible;
 }
