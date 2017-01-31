@@ -1,13 +1,14 @@
 .page-header {
 	margin: -2em 0 2em;
-	padding: 35vh 0 0;
 	position: relative;
-	background: left bottom no-repeat;
-	background-size: cover;
 	position: relative;
+
+	.page-header-media{
+		background: left bottom no-repeat;
+		background-size: cover;
+		min-height: 35vh;
+	}
 	.page-header-body {
-		background-color: $body-bg;
-		color: #333;
 		padding: $spacer*2 0 0;
 		.page-title {
 			font-weight: 300;

@@ -1,6 +1,7 @@
 <template>
 	<div v-if="hasPhotosetData">
-		<header class="page-header" ref="container">
+		<header class="page-header">
+			<div class="page-header-media slide-loadable" ref="media" role="presentation"></div>
 			<div class="page-header-body">
 				<div class="container">
 					<h1 class="page-title">{{photosetData.title._content}}</h1>
@@ -30,10 +31,14 @@
 		components: {
 			Photo,
 		},
+		computed: {
+			photoSource(){
+				return this.sizes[PhotoSizes.LARGE].source;
+			},	
+		},
 		created() {
 			this._requestPhotosetInfo();
 			this._requestPhotosetPhotos();
-
 		},
 		data() {
 			return {
@@ -73,12 +78,15 @@
 		watch: {
 			hasPhotosetData() {
 				if (this.photosetData.primary) {
-					this._requestSizes(this.photosetData.primary);
+					this.requestSizes(this.photosetData.primary);
 				}
 			},
 			hasSizesData(newVal) {
-				this.$refs.container.style.backgroundImage = "url(" + this.getImageSource(PhotoSizes.LARGE) + ")";
-			}
+				this.fadeBackgroundOnLoad(
+					this.photoSource,
+					this.$refs.media,
+				);
+			},
 		},
 	}
 </script>

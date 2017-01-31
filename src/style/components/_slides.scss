@@ -12,7 +12,7 @@
 
 .slide {
 	background: #fff;
-	margin: 0 2em 2em 0;
+	margin: 0 0 2em 0;
 	padding: 0;
 	
 }
@@ -57,5 +57,33 @@
 	}
 	img{
 		max-height: 70vh;
+	}
+}
+
+.slide-loadable{
+	position: relative;
+
+	&:before{
+		background: $body-bg;
+		display: block;
+		content: "";
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		transition: opacity 0.3s ease-out;
+	}
+
+	&.loaded:before{
+		opacity: 0;
+	}
+}
+.img-loadable{
+	opacity: 0;
+	transition: opacity 0.3s ease-in;
+
+	&.loaded{
+		opacity: 1;
 	}
 }

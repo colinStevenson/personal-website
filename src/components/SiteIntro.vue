@@ -1,6 +1,6 @@
 <template>
 	<div 
-		class="intro" 
+		class="intro slide-loadable" 
 		id="site-intro"
 		ref="intro"
 		role="presentation"
@@ -23,7 +23,7 @@
 
 	export default {
 		created() {
-			this._requestSizes(this.getFeaturedImageId());
+			this.requestSizes(this.getFeaturedImageId());
 
 			let component = this;
 			window.addEventListener('scroll', function() {
@@ -55,7 +55,10 @@
 		watch: {
 			hasSizesData(newVal) {
 				if (newVal) {
-					this.$refs.intro.style.backgroundImage = "url(" + this.getImageSource(PhotoSizes.LARGE) + ")";
+					this.fadeBackgroundOnLoad(
+						this.getImageSource(PhotoSizes.LARGE),
+						this.$refs.intro
+					);
 				}
 			}
 		}

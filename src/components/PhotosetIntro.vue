@@ -1,6 +1,6 @@
 <template>
 	<div class="slide slide-link">
-		<div v-if=hasSizesData class="slide-media" :style="{ backgroundImage: 'url(' + photoSource + ')' }">
+		<div ref="media" class="slide-media slide-loadable">
 		</div>
 		<div class="slide-body">
 			<router-link :to="{ name: 'photoset', params: { id: details.id }}">
@@ -24,5 +24,10 @@
 		},
 		props: ['details'],
 		mixins: [PhotoMixin],
+		watch: {
+			hasSizesData(){
+				this.fadeBackgroundOnLoad(this.photoSource, this.$refs.media);
+			}
+		}
 	}
 </script>

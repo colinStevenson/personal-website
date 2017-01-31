@@ -20,8 +20,8 @@ const PhotoMixin = {
 		},
 	},
 	created() {
-		this._requestSizes(this.photoId);
-		this._requestInfo(this.photoId);
+		this.requestSizes(this.photoId);
+		this.requestInfo(this.photoId);
 	},
 	data() {
 		return {
@@ -34,7 +34,7 @@ const PhotoMixin = {
 		}
 	},
 	methods: {
-		_requestSizes(photoId) {
+		requestSizes(photoId) {
 			let component = this;
 			Flickr.photos.getSizes({
 				'photo_id': photoId
@@ -45,7 +45,7 @@ const PhotoMixin = {
 				}
 			});
 		},
-		_requestInfo(photoId) {
+		requestInfo(photoId) {
 			let component = this;
 			Flickr.photos.getInfo({
 				'photo_id': photoId
@@ -55,6 +55,14 @@ const PhotoMixin = {
 					component.meta.title = component.meta.title || { _content: "--" };
 				}
 			});
+		},
+		fadeBackgroundOnLoad(imagePath, element){
+			let image = new Image()
+			image.onload = function(){
+				element.style.backgroundImage = "url(" + image.src + ")";
+				element.className += " loaded";
+			}
+			image.src = imagePath;
 		},
 		getImageSource(size) {
 			return this.sizes[size].source;
