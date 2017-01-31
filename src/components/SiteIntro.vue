@@ -50,7 +50,14 @@
 					let introHeight = $intro.clientHeight ;
 					this.introFade = Math.min((scrollPos / introHeight) * 100, 100);
 				} else {
-					this.introFade = 0;
+					this.setIntroOpen(true);
+				}
+			},
+			setIntroOpen(isOpen){
+				if(isOpen) {
+					document.body.classList.add("intro-open");
+				} else {
+					document.body.classList.remove("intro-open");
 				}
 			},
 		},
@@ -65,12 +72,8 @@
 				}
 			},
 			introFade(){
-				let introOpen = this.introFade < 100;
-				if(introOpen) {
-					document.body.classList.add("intro-open");
-				} else {
-					document.body.classList.remove("intro-open");
-				}
+				this.setIntroOpen(this.introFade < 100);
+				
 			}
 		}
 	}
