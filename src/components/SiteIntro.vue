@@ -1,6 +1,7 @@
 <template>
 	<div 
 		class="intro slide-loadable"
+		:class="{'loaded': imageLoaded}"
 		id="site-intro"
 		ref="intro"
 		role="presentation"
@@ -11,8 +12,6 @@
 	import PhotoMixin from './mixins/Photo';
 	import PhotoSizes from '../api/flickr/PhotoSizes';
 	import { mapActions, mapGetters } from 'vuex';
-
-	import $ from 'webpack-zepto';
 
 	const FEATURE_IMAGES = [
 		"514080236",
@@ -40,7 +39,6 @@
 			};
 		},
 		methods: {
-			...mapActions(['toggleIntro']),
 			handleScroll(e) {
 				this.setIntroScrollPosition();
 			},
@@ -68,7 +66,6 @@
 			},
 			introFade(){
 				this.$store.commit("toggleIntro", this.introFade < 100);
-				//this.toggleIntro(this.introFade < 100;
 			}
 		}
 	}

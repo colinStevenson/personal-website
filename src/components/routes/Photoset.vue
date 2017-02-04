@@ -1,7 +1,12 @@
 <template>
 	<div v-if="hasPhotosetData">
 		<header class="page-header">
-			<div class="page-header-media slide-loadable" ref="media" role="presentation"></div>
+			<div 
+				class="page-header-media slide-loadable" 
+				:class="{'loaded': imageLoaded }"
+				ref="media" 
+				role="presentation">
+			</div>
 			<div class="page-header-body">
 				<div class="container">
 					<h1 class="page-title">{{photosetData.title._content}}</h1>

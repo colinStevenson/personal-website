@@ -1,6 +1,6 @@
 <template>
 	<div class="slide slide-link">
-		<div ref="media" class="slide-media slide-loadable">
+		<div ref="media" class="slide-media slide-loadable" :class="{'loaded': imageLoaded }">
 		</div>
 		<div class="slide-body">
 			<router-link :to="{ name: 'photoset', params: { id: details.id }}">

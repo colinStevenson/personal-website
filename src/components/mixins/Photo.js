@@ -1,5 +1,4 @@
 import PhotoSizes from '../../api/flickr/PhotoSizes';
-import $ from 'webpack-zepto';
 
 const PhotoMixin = {
 	props: {
@@ -27,6 +26,7 @@ const PhotoMixin = {
 	data() {
 		return {
 			hasSizesData: false,
+			imageLoaded: false,
 			meta: {
 				title: "--",
 			},
@@ -59,10 +59,10 @@ const PhotoMixin = {
 		},
 		fadeBackgroundOnLoad(imagePath, element){
 			let image = new Image();
-			let $element = $(element);
+			let component = this;
 			image.onload = function(){
-				$element.css({ backgroundImage: "url(" + image.src + ")" });
-				$element.addClass("loaded");
+				element.style.backgroundImage = "url(" + image.src + ")";
+				component.imageLoaded = true;
 			}
 			image.src = imagePath;
 		},
