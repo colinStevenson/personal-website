@@ -1,6 +1,6 @@
 <template>
 	<div 
-		class="intro slide-loadable" 
+		class="intro slide-loadable"
 		id="site-intro"
 		ref="intro"
 		role="presentation"
@@ -10,6 +10,9 @@
 <script>
 	import PhotoMixin from './mixins/Photo';
 	import PhotoSizes from '../api/flickr/PhotoSizes';
+	import { mapActions, mapGetters } from 'vuex';
+
+	import $ from 'webpack-zepto';
 
 	const FEATURE_IMAGES = [
 		"514080236",
@@ -22,9 +25,9 @@
 	];
 
 	export default {
+		computed: mapGetters(['introOpen']),
 		created() {
 			this.requestSizes(this.getFeaturedImageId());
-
 			let component = this;
 			window.addEventListener('scroll', function() {
 				component.handleScroll.apply(this, arguments);
@@ -37,6 +40,7 @@
 			};
 		},
 		methods: {
+			...mapActions(['toggleIntro']),
 			handleScroll(e) {
 				this.setIntroScrollPosition();
 			},
@@ -47,17 +51,8 @@
 				let scrollPos = window.scrollY;
 				let $intro = this.$refs.intro;
 				if ($intro) {
-					let introHeight = $intro.clientHeight ;
+					let introHeight = $intro.clientHeight;
 					this.introFade = Math.min((scrollPos / introHeight) * 100, 100);
-				} else {
-					this.setIntroOpen(true);
-				}
-			},
-			setIntroOpen(isOpen){
-				if(isOpen) {
-					document.body.classList.add("intro-open");
-				} else {
-					document.body.classList.remove("intro-open");
 				}
 			},
 		},
@@ -72,8 +67,8 @@
 				}
 			},
 			introFade(){
-				this.setIntroOpen(this.introFade < 100);
-				
+				this.$store.commit("toggleIntro", this.introFade < 100);
+				//this.toggleIntro(this.introFade < 100;
 			}
 		}
 	}

@@ -2,9 +2,12 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import Vuex from 'vuex';
 import App from './App';
 import routes from './routes';
 import SmoothScroll from 'smoothscroll-polyfill';
+import Store from './store';
+
 
 SmoothScroll.polyfill();
 
@@ -19,4 +22,5 @@ new Vue({
 	template: '<App/>',
 	components: { App },
 	router,
+	store: Store,
 })

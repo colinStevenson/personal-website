@@ -1,5 +1,5 @@
 <template>
-	<div id="app" :class=$route.name>
+	<div id="app" :class="[introOpen ? 'intro-open' : '', $route.name]">
 		<site-intro v-if="$route.name == 'home'">
 		</site-intro>
 		<navbar></navbar>
@@ -15,24 +15,30 @@
 	import Navbar from './components/Navbar';
 	import SiteIntro from './components/SiteIntro';
 	import IntroScrollingMixin from './components/mixins/IntroScrolling';
+	import { mapGetters } from 'vuex';
 
 	export default {
 		name: 'app',
 		components: {
-			SiteFooter,
 			Navbar,
+			SiteFooter,
 			SiteIntro,
 		},
+		computed: mapGetters(['introOpen']),
 		mixins: [ IntroScrollingMixin ],
 		watch: {
 			'$route': function(){
 				//handling scroll behavior here since router isn't firing handler
-				if(this.$route.name == "home" && this.$route.params.intro !== true) {
-					setTimeout(this.scrollToMain, 100);
+				let showIntro = !!this.$route.params.intro;
+				if(this.$route.name == "home"){
+					this.$store.commit('toggleIntro', showIntro);
+					if(showIntro){
+						setTimeout(this.scrollToTop, 100);
+					} else {
+						setTimeout(this.scrollToMain, 100);
+					}
 				} else {
-					setTimeout(function(){
-						window.scrollTo({left: 0, top: 0, behavior: 'smooth'});
-					}, 100);
+					setTimeout(this.scrollToTop, 100);
 				}
 			}
 		}

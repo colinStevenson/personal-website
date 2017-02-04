@@ -10,14 +10,14 @@
 }
 
 //Fixed navbar handling
-body{
+#app{
 	padding-top: $navbar-height + $spacer*2;
 
 	&.intro-open{
 		padding-top: 0;
 	}
 }
-body.intro-open .navbar{
+#app.intro-open .navbar{
 	position: static;
 }
 

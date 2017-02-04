@@ -9,6 +9,7 @@
 <script>
 	import Flickr from '../api/flickr/flickr';
 	import PhotoMixin from './mixins/Photo';
+	import $ from 'webpack-zepto';
 
 	export default {
 		methods: {
@@ -16,7 +17,7 @@
 				return this.sizes[this.size].source;
 			},
 			handleImageLoad(){
-				this.$refs.image.className += " loaded"
+				$(this.$refs.image).addClass("loaded");
 			},
 		},
 		mixins: [PhotoMixin],
