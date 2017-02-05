@@ -4,7 +4,7 @@
 			<div 
 				class="page-header-media slide-loadable" 
 				:class="{'loaded': imageLoaded }"
-				ref="media" 
+				:style="{ backgroundImage: 'url(' + photoSource + ')' }"
 				role="presentation">
 			</div>
 			<div class="page-header-body">
@@ -38,7 +38,7 @@
 		},
 		computed: {
 			photoSource(){
-				return this.sizes[PhotoSizes.LARGE].source;
+				return this.sizes ? this.sizes[PhotoSizes.LARGE].source : undefined;
 			},	
 		},
 		created() {
@@ -57,26 +57,28 @@
 			_requestPhotosetInfo() {
 				let component = this;
 				//Request photoset info
-				Flickr.photosets.getInfo({
-					'photoset_id': this.$route.params.id,
-				}, function(x, response) {
-					if (response && response.photoset && response.photoset.id) {
-						component.photosetData = response.photoset;
-						component.hasPhotosetData = true;
+				Flickr.requestPhotosetInfo(
+					this.$route.params.id, 
+					function(x, photoset) {
+						if (photoset) {
+							component.photosetData = photoset;
+							component.hasPhotosetData = true;
+						}
 					}
-				});
+				);
 			},
 			_requestPhotosetPhotos() {
 				let component = this;
-				//Request photoset photoset
-				Flickr.photosets.getPhotos({
-					'photoset_id': this.$route.params.id,
-				}, function(x, response) {
-					if (response && response.photoset && response.photoset.photo) {
-						component.photos = response.photoset.photo;
-						component.hasPhotos = true;
+				//Request photoset photos
+				Flickr.requestPhotosetPhotos(
+					this.$route.params.id, 
+					function(x, photos) {
+						if (photos) {
+							component.photos = photos;
+							component.hasPhotos = true;
+						}
 					}
-				});
+				);
 			},
 		},
 		mixins: [PhotoMixin],
@@ -87,10 +89,7 @@
 				}
 			},
 			hasSizesData(newVal) {
-				this.fadeBackgroundOnLoad(
-					this.photoSource,
-					this.$refs.media,
-				);
+				this.fadeBackgroundOnLoad(this.photoSource);
 			},
 		},
 	}

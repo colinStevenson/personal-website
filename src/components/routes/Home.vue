@@ -10,11 +10,10 @@
 </template>
 <script>
 	import PhotosetIntro from '../PhotosetIntro';
-	import ENV from '../../env';
 
 	export default {
 		components: {
-			PhotosetIntro
+			PhotosetIntro,
 		},
 		created() {
 			this._requestPhotosets();
@@ -28,20 +27,18 @@
 		methods: {
 			_requestPhotosets() {
 				let component = this;
-				Flickr.photosets.getList({
-					'user_id': ENV.FLICKR_USER_ID,
-				}, function(x, response) {
-					if (response && response.photosets && response.photosets.photoset) {
-						component.photosets = response.photosets.photoset;
+				Flickr.requestPhotosetList(
+					function(x, list) {
+						component.photosets = list;
 						component.hasPhotosets = true;
 					}
-				});
+				);
 			},
 			goToPhotoset(photosetId) {
 				this.$router.push({
 					name: 'photoset',
 					params: {
-						id: photosetId
+						id: photosetId,
 					}
 				});
 			},

@@ -5,7 +5,7 @@
 		id="site-intro"
 		ref="intro"
 		role="presentation"
-		:style="{ filter: 'grayscale(' + introFade + '%)' }">
+		:style="{ filter: 'grayscale(' + introFade + '%)', backgroundImage: 'url(' + photoSource + ')' }">
 	</div>
 </template>
 <script>
@@ -24,9 +24,16 @@
 	];
 
 	export default {
-		computed: mapGetters(['introOpen']),
+		computed: {
+			...mapGetters(['introOpen']),
+			photoSource(){
+				return this.sizes ? this.sizes[PhotoSizes.LARGE].source : undefined;
+			},
+			photoId(){
+				return this.getFeaturedImageId();
+			},
+		},
 		created() {
-			this.requestSizes(this.getFeaturedImageId());
 			let component = this;
 			window.addEventListener('scroll', function() {
 				component.handleScroll.apply(this, arguments);
@@ -58,10 +65,7 @@
 		watch: {
 			hasSizesData(newVal) {
 				if (newVal) {
-					this.fadeBackgroundOnLoad(
-						this.getImageSource(PhotoSizes.LARGE),
-						this.$refs.intro
-					);
+					this.fadeBackgroundOnLoad(this.photoSource);
 				}
 			},
 			introFade(){

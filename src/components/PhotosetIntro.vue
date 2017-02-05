@@ -1,6 +1,9 @@
 <template>
 	<div class="slide slide-link">
-		<div ref="media" class="slide-media slide-loadable" :class="{'loaded': imageLoaded }">
+		<div 
+			class="slide-media slide-loadable" 
+			:class="{'loaded': imageLoaded }"
+			:style="{ backgroundImage: 'url(' + photoSource + ')' }">
 		</div>
 		<div class="slide-body">
 			<router-link :to="{ name: 'photoset', params: { id: details.id }}">
@@ -19,14 +22,14 @@
 				return this.details.primary;
 			},
 			photoSource(){
-				return this.sizes[PhotoSizes.LARGE].source;
+				return this.sizes ? this.sizes[PhotoSizes.LARGE].source : undefined;
 			}
 		},
 		props: ['details'],
 		mixins: [PhotoMixin],
 		watch: {
 			hasSizesData(){
-				this.fadeBackgroundOnLoad(this.photoSource, this.$refs.media);
+				this.fadeBackgroundOnLoad(this.photoSource);
 			}
 		}
 	}

@@ -4,6 +4,6 @@
 	height: calc(100vh - #{$navbar-height});
 	visibility: hidden;
 }
-#app.intro-open .intro{
+#app.home.intro-open .intro{
 	visibility: visible;
 }

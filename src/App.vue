@@ -25,6 +25,11 @@
 			SiteIntro,
 		},
 		computed: mapGetters(['introOpen']),
+		created(){
+			if(this.$route.name != "home"){
+				this.$store.commit('toggleIntro', false);
+			}
+		},
 		mixins: [ IntroScrollingMixin ],
 		watch: {
 			'$route': function(){
@@ -39,6 +44,7 @@
 					}
 				} else {
 					setTimeout(this.scrollToTop, 100);
+					this.$store.commit('toggleIntro', false);
 				}
 			}
 		}
