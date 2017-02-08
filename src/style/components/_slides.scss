@@ -64,7 +64,8 @@
 	position: relative;
 
 	&:before{
-		background: $body-bg;
+		background-image: repeating-linear-gradient(0deg, rgba(255,255,255, 0.25), rgba(255,255,255, 0.25) 1px, transparent 1px, transparent 7px);
+		background-size: 2px;
 		display: block;
 		content: "";
 		position: absolute;

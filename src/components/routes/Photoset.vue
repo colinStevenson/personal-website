@@ -19,7 +19,7 @@
 				<div v-for="photo in photos" class="col-md-3 col-xs-4">
 					<div class="slide slide-square slide-link" v-on:click="handlePhotoClick(photo.id)">
 						<photo :id="photo.id" :size=1></photo>
-						<photo-full-screen v-if="activePhoto==photo.id" :id="photo.id"></photo-full-screen>
+						<photo-full-screen v-if="activePhoto==photo.id" :id="photo.id" :include-meta=true></photo-full-screen>
 					</div>
 				</div>
 			</ul>

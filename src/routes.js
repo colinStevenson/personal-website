@@ -1,6 +1,5 @@
 import About from './components/routes/About.vue';
 import Home from './components/routes/Home.vue';
-import Photo from './components/routes/Photo.vue';
 import Photoset from './components/routes/Photoset.vue';
 
 const routes = [

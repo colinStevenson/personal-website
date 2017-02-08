@@ -31,6 +31,7 @@ const PhotoMixin = {
 			imageLoaded: false,
 			meta: {
 				title: "--",
+				description: "--",
 			},
 			sizes: undefined,
 			source: undefined,
