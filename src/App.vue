@@ -1,5 +1,7 @@
 <template>
-	<div id="app" :class="[introOpen ? 'intro-open' : '', $route.name]">
+	<div 
+		:class="[introOpen ? 'intro-open' : '', modalOpen ? 'modal-open' : '',  $route.name]"
+		id="app" >
 		<site-intro v-if="$route.name == 'home'">
 		</site-intro>
 		<navbar></navbar>
@@ -24,7 +26,7 @@
 			SiteFooter,
 			SiteIntro,
 		},
-		computed: mapGetters(['introOpen']),
+		computed: mapGetters(['introOpen', 'modalOpen']),
 		created(){
 			if(this.$route.name != "home"){
 				this.$store.commit('toggleIntro', false);
@@ -56,5 +58,9 @@
 /*make sure we can scroll past the intro even if photoset list hasn't loaded yet*/
  #app.home{
 	 min-height: 200vh;
+ }
+ #app.modal-open{
+	 height: 100vh;
+	 overflow: hidden;
  }
 </style>

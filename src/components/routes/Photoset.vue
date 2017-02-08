@@ -17,10 +17,9 @@
 		<div class="container">
 			<div class="row">
 				<div v-for="photo in photos" class="col-md-3 col-xs-4">
-					<div class="slide slide-square slide-link">
-						<router-link :to="{ name: 'photo', params: { id: photo.id }}">
-							<photo :id="photo.id" :size=1></photo>
-						</router-link>
+					<div class="slide slide-square slide-link" v-on:click="handlePhotoClick(photo.id)">
+						<photo :id="photo.id" :size=1></photo>
+						<photo-full-screen v-if="activePhoto==photo.id" :id="photo.id"></photo-full-screen>
 					</div>
 				</div>
 			</ul>
@@ -29,17 +28,22 @@
 </template>
 <script>
 	import Photo from '../Photo.vue';
+	import PhotoFullScreen from '../PhotoFullScreen.vue';
 	import PhotoMixin from '../mixins/Photo';
 	import PhotoSizes from '../../api/flickr/PhotoSizes';
 
 	export default {
 		components: {
 			Photo,
+			PhotoFullScreen,
 		},
 		computed: {
 			photoSource(){
 				return this.sizes ? this.sizes[PhotoSizes.LARGE].source : undefined;
-			},	
+			},
+			activePhoto(){
+				return this.$route.query && this.$route.query.photo || null;
+			}
 		},
 		created() {
 			this._requestPhotosetInfo();
@@ -80,6 +84,15 @@
 					}
 				);
 			},
+			handlePhotoClick(photoId){
+				this.$router.push(
+					{ 
+						name: 'photoset', 
+						params: {id: this.$route.params.id,  },
+						query: { photo: photoId },
+					}
+				)
+			},
 		},
 		mixins: [PhotoMixin],
 		watch: {
@@ -90,6 +103,16 @@
 			},
 			hasSizesData(newVal) {
 				this.fadeBackgroundOnLoad(this.photoSource);
+			},
+			$route(){
+				if(this.$route.query  && this.$route.query.photo) {
+					this.activePhoto = this.$route.query.photo;
+				} else {
+					this.activePhoto = null;
+				}
+			},
+			activePhoto(){
+				this.$store.commit("toggleModalOpen", this.activePhoto);
 			},
 		},
 	}

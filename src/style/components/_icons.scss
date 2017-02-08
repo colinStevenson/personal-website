@@ -24,6 +24,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-cross:before {
+  content: "\ea0f";
+}
 .icon-google-plus:before {
   content: "\ea88";
 }

@@ -4,7 +4,6 @@
 			<h1>{{meta.title._content}}</h1>
 		</div>
 		<img 
-			ref="image" 
 			v-if="hasSizesData" 
 			v-on:load="handleImageLoad" 
 			:src="getSource()" 
@@ -26,7 +25,7 @@
 				this.imageLoaded = true;
 			},
 		},
-		mixins: [PhotoMixin],
+		mixins: [ PhotoMixin ],
 		props: {
 			id: {
 				type: String,
