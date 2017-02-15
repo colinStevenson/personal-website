@@ -4,7 +4,7 @@
 			<span class="icon-cross"></span>
 			<span class="sr-only">Close</span>
 		</button>
-		<div>
+		<figure>
 			<img
 			v-if="hasSizesData" 
 			v-on:load="handleImageLoad" 
@@ -12,11 +12,11 @@
 			:alt="meta.title._content" 
 			:class="{'loaded': imageLoaded}"
 			class="img-responsive img-loadable" />
-			<div class="meta">
+			<figcaption class="meta">
 				<h1 class="title">{{meta.title._content}}</h1>
 				<p>{{meta.description._content}}</p>
-			</div>
-		</div>
+			</figcaption>
+		</figure>
 	</section>
 </template>
 <script>
@@ -70,21 +70,20 @@
 
 	.photo-full-screen{
 		background: $body-bg;
-		padding: $spacer*3 $spacer*3 $spacer;
+		display: flex;
 		left: 0;
 		right: 0;
 		top: 0;
 		bottom: 0;
 		opacity: 0;
+		padding: $spacer $spacer $spacer;
 		position: fixed;
 		transform: scaleY(0);
 		transition: all 0.3s ease;
 		z-index: 999;
 
 		.meta{
-			background: $body-bg;
-			padding: $spacer 0;
-		
+			
 			.title{
 				font-size: 24px;
 				margin: 4px 0;
@@ -100,8 +99,14 @@
 		transform: scaleY(1);
 		opacity: 1;
 	}
+	.photo-full-screen figure{
+		background: #fff;
+		box-shadow: 0 0 25px 5px rgba(0, 0, 0, 0.1);
+		margin: 0 auto;
+		padding: $spacer*2;
+	}
 	.photo-full-screen img{
-		height: calc(100vh - 100px); //full height less the height of the meta and close button
-		margin: 0;
+		max-height: calc(100vh - 100px); //full height less the height of the meta and close button
+		width: auto;
 	}
 </style>
