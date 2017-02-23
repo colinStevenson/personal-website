@@ -73,7 +73,6 @@ Flickr.requestPhotoInfo = function(photoId, handler){
 	let flickr = this;
 	if(this._cache.photoInfo[photoId]){
 		handler({ fromCache: true }, this._cache.photoInfo[photoId]);
-		console.log(this._cache.photoInfo[photoId])
 	} else {
 		Flickr.photos.getInfo({
 			'photo_id': photoId

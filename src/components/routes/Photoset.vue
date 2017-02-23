@@ -16,10 +16,16 @@
 		</header>
 		<div class="container">
 			<div class="row">
-				<div v-for="photo in photos" class="col-md-3 col-xs-4">
-					<div class="slide slide-square slide-link" v-on:click="handlePhotoClick(photo.id)">
+				<div v-for="(photo, index) in photos" class="col-md-3 col-xs-4" :data-index="index > 0">
+					<div class="slide slide-square slide-link" v-on:click="handlePhotoClick(index)">
 						<photo :id="photo.id" :size=1></photo>
-						<photo-full-screen v-if="activePhoto==photo.id" :id="photo.id" :include-meta=true></photo-full-screen>
+						<photo-full-screen 
+							v-if="activePhoto==photo.id" 
+							:id="photo.id"
+							:next="index+1 < photos.length ? index+1 : null"
+							:previous="index > 0 ? index-1 : null"
+							:include-meta=true>
+						</photo-full-screen>
 					</div>
 				</div>
 			</ul>
@@ -42,8 +48,22 @@
 				return this.sizes ? this.sizes[PhotoSizes.LARGE].source : undefined;
 			},
 			activePhoto(){
-				return this.$route.query && this.$route.query.photo || null;
-			}
+				let val = undefined;
+				if(
+					this.activePhotoIndex !== undefined && 
+					this.photos && this.photos[this.activePhotoIndex]
+				){
+					val = this.photos[this.activePhotoIndex].id || undefined;
+				}
+				return val;
+			},
+			activePhotoIndex(){
+				let val = undefined;
+				if(this.$route.query && this.$route.query.photo !== undefined){
+					val = Number(this.$route.query.photo);
+				}
+				return val;
+			},
 		},
 		created() {
 			this._requestPhotosetInfo();
@@ -60,7 +80,6 @@
 		methods: {
 			_requestPhotosetInfo() {
 				let component = this;
-				//Request photoset info
 				Flickr.requestPhotosetInfo(
 					this.$route.params.id, 
 					function(x, photoset) {
@@ -73,7 +92,6 @@
 			},
 			_requestPhotosetPhotos() {
 				let component = this;
-				//Request photoset photos
 				Flickr.requestPhotosetPhotos(
 					this.$route.params.id, 
 					function(x, photos) {
@@ -84,12 +102,12 @@
 					}
 				);
 			},
-			handlePhotoClick(photoId){
+			handlePhotoClick(photoIndex){
 				this.$router.push(
 					{ 
 						name: 'photoset', 
 						params: {id: this.$route.params.id,  },
-						query: { photo: photoId },
+						query: { photo: photoIndex },
 					}
 				)
 			},
@@ -101,18 +119,11 @@
 					this.requestSizes(this.photosetData.primary);
 				}
 			},
-			hasSizesData(newVal) {
+			hasSizesData() {
 				this.fadeBackgroundOnLoad(this.photoSource);
 			},
-			$route(){
-				if(this.$route.query  && this.$route.query.photo) {
-					this.activePhoto = this.$route.query.photo;
-				} else {
-					this.activePhoto = null;
-				}
-			},
 			activePhoto(){
-				this.$store.commit("toggleModalOpen", this.activePhoto);
+				this.$store.commit("toggleModalOpen", !!this.activePhoto);
 			},
 		},
 	}

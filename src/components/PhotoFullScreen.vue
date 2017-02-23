@@ -4,6 +4,22 @@
 			<span class="icon-cross"></span>
 			<span class="sr-only">Close</span>
 		</button>
+		<div>
+			<button 
+				class="btn btn-link previous"
+				v-if="previous !== null"
+				v-on:click.stop="goToIndex(previous)">
+				<span class="sr-only">Previous Photo</span>
+				<span>&#9664;</span>
+			</button>
+			<button 
+				class="btn btn-link next" 
+				v-if="next"
+				v-on:click.stop="goToIndex(next)">
+				<span class="sr-only">Next Photo</span>
+				<span>&#9654;</span>
+			</button>
+		</div>
 		<figure>
 			<img
 			v-if="hasSizesData" 
@@ -22,6 +38,7 @@
 <script>
 	import PhotoMixin from './mixins/Photo';
 	import PhotoSizes from '../api/flickr/PhotoSizes';
+
 	const ANIMATION_DELAY = 100;
 
 	export default {
@@ -36,10 +53,14 @@
 		created(){
 			let component = this;
 			setTimeout(function(){component.isIn = true}, ANIMATION_DELAY);
+			window.addEventListener('keydown', function(e){
+				component.handleKeyPress(e);
+			});
 		},
 		data(){
 			return {
 				isIn: false,
+				keyPressed: false,
 			};
 		},
 		methods: {
@@ -55,12 +76,36 @@
 			},
 			handleImageLoad(){
 				this.imageLoaded = true;
-			}
+			},
+			handleKeyPress(e){
+				//27 is esc
+				if(e.keyCode == 27){
+					this.handleClose();
+				}
+				
+			},
+			goToIndex(index){
+				this.$router.push(
+					{ 
+						name: 'photoset', 
+						params: {id: this.$route.params.id,  },
+						query: { photo: index },
+					}
+				)
+			},
 		},
 		mixins: [ PhotoMixin ],
 		props: {
 			id: {
 				type: String,
+			},
+			next:{
+				default: null,
+				type: Number
+			},
+			previous:{
+				default: null,
+				type: Number
 			}
 		},
 	};
@@ -70,13 +115,14 @@
 
 	.photo-full-screen{
 		background: $body-bg;
+		cursor: default;
 		display: flex;
 		left: 0;
 		right: 0;
 		top: 0;
 		bottom: 0;
 		opacity: 0;
-		padding: $spacer $spacer $spacer;
+		padding: $spacer 50px $spacer;
 		position: fixed;
 		transform: scaleY(0);
 		transition: all 0.3s ease;
@@ -93,6 +139,19 @@
 			position: absolute;
 			right: $spacer;
 			top: 5px;
+		}
+
+		.next,
+		.previous{
+			font-size: 1.5em;
+			position: absolute;
+			left: 0;
+			top: 50%;
+			transform: translateY(-50%);
+		}
+		.next{
+			right: 0;
+			left: auto;
 		}
 	}
 	.photo-full-screen.in{
