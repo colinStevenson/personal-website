@@ -30,7 +30,7 @@
 			class="img-responsive img-loadable" />
 			<figcaption class="meta">
 				<h1 class="title">{{meta.title._content}}</h1>
-				<p>{{meta.description._content}}</p>
+				<p v-if="meta.description._content && meta.description._content !== ''">{{meta.description._content}}</p>
 			</figcaption>
 		</figure>
 	</section>
@@ -53,9 +53,12 @@
 		created(){
 			let component = this;
 			setTimeout(function(){component.isIn = true}, ANIMATION_DELAY);
-			window.addEventListener('keydown', function(e){
-				component.handleKeyPress(e);
-			});
+			window.addEventListener('keydown', this._keyDownHandler);
+			window.addEventListener('keyup', this._keyUpHandler);
+		},
+		destroyed(){
+			window.removeEventListener('keydown', this._keyDownHandler);
+			window.removeEventListener('keyup', this._keyUpHandler);
 		},
 		data(){
 			return {
@@ -79,10 +82,27 @@
 			},
 			handleKeyPress(e){
 				//27 is esc
+				let currentPhoto = Number(this.$route.query.photo);
 				if(e.keyCode == 27){
 					this.handleClose();
+				} else if(e.keyCode == 37) {
+					if(this.previous != null){
+						this.goToIndex(currentPhoto - 1);
+					}
+				} else if(e.keyCode == 39) {
+					if(this.next != null) {
+						this.goToIndex(currentPhoto + 1);
+					}
 				}
-				
+			},
+			_keyDownHandler(e){
+				if(!this.keyPressed){
+					this.keyPressed = true;
+					this.handleKeyPress(e);
+				}
+			},
+			_keyUpHandler(e){
+				this.keyPressed = false;
 			},
 			goToIndex(index){
 				this.$router.push(
@@ -162,7 +182,10 @@
 		background: #fff;
 		box-shadow: 0 0 25px 5px rgba(0, 0, 0, 0.1);
 		margin: 0 auto;
-		padding: $spacer*2;
+
+		> figcaption{
+			padding: $spacer*2 $spacer;
+		}
 	}
 	.photo-full-screen img{
 		max-height: calc(100vh - 100px); //full height less the height of the meta and close button

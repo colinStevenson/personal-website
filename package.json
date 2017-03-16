@@ -9,6 +9,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "es6-promise": "^4.1.0",
     "lodash.debounce": "^4.0.8",
     "node-sass": "^4.2.0",
     "sass-loader": "^4.1.1",

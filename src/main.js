@@ -7,9 +7,11 @@ import App from './App';
 import routes from './routes';
 import SmoothScroll from 'smoothscroll-polyfill';
 import Store from './store';
+import PromisePolyfill from 'es6-promise';
 
 
 SmoothScroll.polyfill();
+PromisePolyfill.polyfill();
 
 const router = new VueRouter({
 	routes: routes,
